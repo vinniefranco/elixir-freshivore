@@ -1,0 +1,5 @@
+<div class="card-columns">
+  <%= for item <- @feed do %>
+    <%= render item.type <> ".html", item: item %>
+  <% end %>
+</div>

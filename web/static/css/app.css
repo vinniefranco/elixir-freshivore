@@ -1,0 +1,36 @@
+.hero {
+  color: #fff;
+  font-family: "Questrial", sans-serif;
+  padding: 160px 20px 20px;
+  text-transform: uppercase;
+  text-align: center;
+  background: url('/images/sac.jpg');
+}
+.hero .title {
+  color: #fff;
+  padding: 20px 10px 20px;
+  margin: 0 auto 30px;
+  width: 600px;
+  height: auto;
+  border: 4px solid #fff;
+}
+.hero a {
+  color: #fff;
+}
+.card {
+  font-family: "Questrial", sans-serif;
+}
+.hero .item {
+  padding: 10px;
+  display: inline-block;
+}
+.hero .figure {
+  margin-bottom: -120px;
+}
+.img-circle.img-responsive {
+  border: 8px solid #fff;
+}
+.padded {
+  padding-top: 100px;
+
+}

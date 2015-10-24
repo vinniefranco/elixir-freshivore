@@ -1,0 +1,8 @@
+<div class="card card-block text-center">
+  <blockquote class="card-blockquote">
+    <p><%= raw @item.text %></p>
+    <small class="text-muted">
+      <%= @item.epoch %>
+    </small>
+  </blockquote>
+</div>
