@@ -28,10 +28,6 @@ defmodule Freshivore.ConnCase do
   end
 
   setup tags do
-    unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(Freshivore.Repo, [])
-    end
-
     :ok
   end
 end

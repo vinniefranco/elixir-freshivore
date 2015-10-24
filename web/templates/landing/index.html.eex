@@ -1,4 +1,4 @@
-<div class="card-columns">
+<div id="grid" data-columns>
   <%= for item <- @feed do %>
     <%= render item.type <> ".html", item: item %>
   <% end %>

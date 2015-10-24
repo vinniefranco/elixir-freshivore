@@ -1,15 +1,22 @@
-defmodule Tweets do
-  use Cacheability
+defmodule Freshivore.Tweets do
+  alias Freshivore.Cache
+  alias Freshivore.Tweet
+
+  @cache_key "tweets"
 
   def get do
-    get_cached("tweets", Tweet)
+    Cache.get(%{key: @cache_key, as: Tweet}) |> process_tweets
   end
 
-  defp cache_and_return_items do
-    tweets = ExTwitter.user_timeline |> Enum.map &(Tweet.build(&1))
+  def process_tweets(:empty) do
+    tweets = ExTwitter.user_timeline |> Enum.map &(Freshivore.Tweet.build(&1))
 
-    Cache.set_key("tweets", tweets)
+    Cache.set("tweets", tweets)
 
+    tweets
+  end
+
+  def process_tweets({:ok, tweets}) do
     tweets
   end
 end

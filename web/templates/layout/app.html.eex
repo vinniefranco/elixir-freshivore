@@ -16,41 +16,41 @@
   <body>
     <div class="hero">
       <div class="text-center">
+        <figure class="figure">
+          <img class="img-circle img-responsive" src="http://www.gravatar.com/avatar/032f1a85263f21ff1f013421967ef99e?s=200" alt="Vincent Franco" />
+        </figure>
         <h1 class="title">Vincent Franco</h1>
         <p class="subtext">Application Developer &cir; Motorcycle Enthusiast</pt>
         <ul>
           <li class="item">
-            <a href="http://github.com/vinniefranco">
-              <i class="fa fa-github fa-2x"></i>
+            <a class="faa-parent animated-hover" href="http://github.com/vinniefranco">
+              <i class="fa fa-github faa-pulse fa-2x"></i>
             </a>
           </li>
           <li class="item">
-            <a href="http://linkedin.com/in/vincentfranco">
-              <i class="fa fa-linkedin fa-2x"></i>
+            <a class="faa-parent animated-hover" href="http://linkedin.com/in/vincentfranco">
+              <i class="fa fa-linkedin faa-pulse fa-2x"></i>
             </a>
           </li>
           <li class="item">
-            <a href="http://twitter.com/vinniefranco">
-              <i class="fa fa-twitter fa-2x"></i>
+            <a class="faa-parent animated-hover" href="http://twitter.com/vinniefranco">
+              <i class="fa fa-twitter faa-pulse fa-2x"></i>
             </a>
           </li>
           <li class="item">
-            <a href="http://facebook.com/vinnie.franco">
-              <i class="fa fa-facebook fa-2x"></i>
+            <a class="faa-parent animated-hover" href="http://facebook.com/vinnie.franco">
+              <i class="fa fa-facebook faa-pulse fa-2x"></i>
             </a>
           </li>
         </ul>
-        <figure class="figure">
-          <img class="img-circle img-responsive" src="http://www.gravatar.com/avatar/032f1a85263f21ff1f013421967ef99e?s=200" alt="Vincent Franco" />
-        </figure>
       </div>
     </div>
-    <div class="container-fluid" role="main">
+    <div class="container" role="main">
       <div class="row padded">
         <%= @inner %>
       </div>
       </div>
     </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
+  <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 </html>

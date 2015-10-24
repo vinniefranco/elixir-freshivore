@@ -1,5 +1,13 @@
 defmodule Freshivore.Repo do
-  def start_link do
+  def all(Freshivore.Grams) do
+    Freshivore.Grams.get
+  end
 
+  def all(Freshivore.Tweets) do
+    Freshivore.Tweets.get
+  end
+
+  def all(_module) do
+    []
   end
 end

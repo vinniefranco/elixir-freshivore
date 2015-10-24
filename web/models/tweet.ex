@@ -1,30 +1,28 @@
-defmodule Tweet do
+defmodule Freshivore.Tweet do
   alias Timex.Parse.DateTime.Parser, as: TimeString
   alias Timex.Date, as: TimeStamp
+  alias Freshivore.Socialify
 
-  defstruct text: "", epoch: 0, type: "tweet"
+  defstruct epoch: 0,
+            id: "",
+            text: "",
+            type: "tweet"
 
   def build(raw_tweet) do
-    %Tweet{text: text(raw_tweet.text), epoch: parse_time(raw_tweet)}
+    %Freshivore.Tweet{
+      epoch: parse_time(raw_tweet),
+      id: raw_tweet.id_str,
+      text: text(raw_tweet.text)
+    }
   end
 
   defp text(tweet) do
-    tweet
-    |> String.split(" ")
-    |> Enum.map(&(linkify &1))
-    |> Enum.join(" ")
-  end
+    social_opts = %{
+      hash: "https://twitter.com/hashtag/{@}",
+      mention: "https://twitter.com/{@}"
+    }
 
-  defp linkify("#" <> rest) do
-    "<a href='https://twitter.com/hashtag/" <> rest <> "/?src=hash'>#" <> rest <> "</a>"
-  end
-
-  defp linkify("@" <> rest) do
-    "<a href='https://twitter.com/" <> rest <> "'>@" <> rest <> "</a>"
-  end
-
-  defp linkify(str) do
-    str
+    tweet |> Socialify.linkify(social_opts)
   end
 
   defp parse_time(raw_tweet) do

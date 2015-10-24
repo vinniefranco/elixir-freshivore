@@ -1,40 +1,29 @@
-defmodule Gram do
-  defstruct caption: "", image_url: "", epoch: 0, type: "gram"
+defmodule Freshivore.Gram do
+  alias Freshivore.Socialify
+
+  defstruct epoch: 0,
+            hires_image_url: "",
+            image_url: "",
+            link: "",
+            type: "gram",
+            caption: ""
 
   def build(raw_gram) do
-    %Gram{
-      epoch: String.to_integer(raw_gram["created_time"]),
+    %Freshivore.Gram{
       caption: captionify(raw_gram),
-      image_url: image(raw_gram)
+      epoch: String.to_integer(raw_gram["created_time"]),
+      hires_image_url: get_in(raw_gram, ["images", "standard_resolution", "url"]),
+      image_url: get_in(raw_gram, ["images", "low_resolution", "url"]),
+      link: raw_gram["link"]
     }
   end
 
   def captionify(%{"caption" => raw_caption}) do
-    str = raw_caption["text"] || ""
+    social_opts = %{
+      hash: "https://instagram.com/explore/tags/{@}",
+      mention: "https://instagram.com/{@}"
+    }
 
-    str |> captionify
-  end
-
-  def captionify(raw_caption) do
-    raw_caption
-    |> String.split(" ")
-    |> Enum.map(&(linkify &1))
-    |> Enum.join(" ")
-  end
-
-  defp image(%{"images" => images}) do
-    images["standard_resolution"]["url"]
-  end
-
-  def linkify("#" <> rest) do
-    "<a href='https://instagram.com/explore/tags/" <> rest <> "'>#" <> rest <> "</a>"
-  end
-
-  def linkify("@" <> rest) do
-    "<a href='https://instagram.com/" <> rest <> "'>@" <> rest <> "</a>"
-  end
-
-  def linkify(str) do
-    str
+    (raw_caption["text"] || "") |> Socialify.linkify(social_opts)
   end
 end

@@ -1,18 +1,23 @@
-defmodule Grams do
-  use Cacheability
+defmodule Freshivore.Grams do
+  alias Freshivore.Cache
+  alias Freshivore.Gram
+
+  @cache_key "grams"
 
   def get do
-    get_cached "grams",  Gram
+    Cache.get(%{key: @cache_key, as: Gram}) |> process_grams
   end
 
-  defp cache_and_return_items do
-    Instagram.start
-
+  def process_grams(:empty) do
     grams = Instagram.user_recent_media(System.get_env("INSTAGRAM_TOKEN"))
-      |> Enum.map &(Gram.build(&1))
+    |> Enum.map(&(Gram.build &1))
 
-    Cache.set_key("grams", grams)
+    Cache.set("grams", grams)
 
+    grams
+  end
+
+  def process_grams({:ok, grams}) do
     grams
   end
 end

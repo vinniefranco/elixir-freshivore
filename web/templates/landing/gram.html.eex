@@ -1,6 +1,19 @@
-<div class="card">
-  <img class="card-img" src="<%= @item.image_url %>"\>
-  <div class="card-footer">
-    <small><%= raw @item.caption %></small>
+<div class="panel panel-primary gram">
+  <div class="panel-inner">
+    <div class="panel-media">
+      <img class="panel-image" src="<%= @item.image_url %>"\>
+    </div>
+    <div class="panel-body">
+      <small><%= raw @item.caption %></small>
+    </div>
+    <div class="panel-epoch">
+      <small class="text-muted">
+        <a href="<%= @item.link %>">
+          <i class="fa fa-instagram fa-sm">
+            <%= @item.epoch %>
+          </i>
+        </a>
+      </small>
+    </div>
   </div>
 </div>

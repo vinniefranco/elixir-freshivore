@@ -1,8 +1,18 @@
-<div class="card card-block text-center">
-  <blockquote class="card-blockquote">
-    <p><%= raw @item.text %></p>
-    <small class="text-muted">
-      <%= @item.epoch %>
-    </small>
-  </blockquote>
+<div class="panel panel-primary tweet">
+  <div class="panel-inner">
+    <div class="panel-body">
+      <blockquote>
+        <p><%= raw @item.text %></p>
+      </blockquote>
+    </div>
+    <div class="panel-epoch">
+      <small class="text-muted">
+        <a href="https://twitter.com/vinniefranco/statuses/<%= @item.id %>">
+          <i class="fa fa-twitter fa-sm">
+            <%= @item.epoch %>
+          </i>
+        </a>
+      </small>
+    </div>
+  </div>
 </div>

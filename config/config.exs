@@ -20,14 +20,11 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :extwitter, :oauth, [
-   consumer_key: "jwi19j2gDCEjbVGVNJ3mGiXto",
-   consumer_secret: "vBq7nsjTmrcqRQbAERe6pJvOuOXAJ6QsMXvYmlGwn0GdDhxFaf",
-   access_token: "198093-hTTA17542MmxYfAPN8rT6uU0Pc17o3nXklcgemkxwLv",
-   access_token_secret: "JI864MxS48Qph7Yl0RmLaeDUzSfMibfVUeQ95Okk6XYuz"
+   consumer_key: System.get_env("TWITTER_CONSUMER_KEY"),
+   consumer_secret: System.get_env("TWITTER_CONSUMER_SECRET"),
+   access_token: System.get_env("TWITTER_ACCESS_TOKEN"),
+   access_token_secret: System.get_env("TWITTER_ACCESS_TOKEN_SECRET")
 ]
-
-config :exredis, url: System.get_env("REDIS_URL")
-# redis://localhost:6379
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

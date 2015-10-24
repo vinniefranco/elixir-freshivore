@@ -18,7 +18,8 @@ defmodule Freshivore.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Freshivore, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :tzdata]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :tzdata, :instagram],
+     test_coverage: [tool: Coverex.Task]]
   end
 
   # Specifies which paths to compile per environment.
