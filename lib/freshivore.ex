@@ -7,12 +7,9 @@ defmodule Freshivore do
     import Supervisor.Spec, warn: false
 
     children = [
-      # Start the endpoint when the application starts
       supervisor(Freshivore.Endpoint, []),
-      # Start the Ecto repository
-      # worker(Freshivore.Repo, []),
-      # Here you could define other workers and supervisors as children
-      # worker(Freshivore.Worker, [arg1, arg2, arg3]),
+      supervisor(Freshivore.RedixPool, []),
+      worker(Freshivore.Store, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

@@ -1,9 +1,14 @@
 defmodule Freshivore.Socialify do
+  require Logger
   def linkify(str, url_map) do
-    str 
+    str
     |> String.split(" ")
     |> Enum.map(&(linkify_word(&1, url_map)))
     |> Enum.join(" ")
+  end
+
+  defp linkify_word("http" <> rest, _) do
+    "<a href='http#{rest}'>http#{rest}</a>"
   end
 
   defp linkify_word("@" <> rest, %{mention: token}) when bit_size(rest) > 0 do

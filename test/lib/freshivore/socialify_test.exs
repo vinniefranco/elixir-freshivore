@@ -2,6 +2,20 @@ defmodule Freshivore.SocialTest do
   alias Freshivore.Socialify
   use ExUnit.Case, async: true
 
+  test "linkifies http links" do
+    linked = "This http://g.ca is so linked up"
+              |> Socialify.linkify(%{mention: "http://a.com/{@}"})
+
+    assert "This <a href='http://g.ca'>http://g.ca</a> is so linked up" = linked
+  end
+
+  test "linkifies https links" do
+    linked = "This https://g.ca is so linked up"
+              |> Socialify.linkify(%{mention: "http://a.com/{@}"})
+
+    assert "This <a href='https://g.ca'>https://g.ca</a> is so linked up" = linked
+  end
+
   test "linkifies @mentions by wrapping anchor with token replaced" do
     linked = "This @guy is so linked up"
               |> Socialify.linkify(%{mention: "http://a.com/{@}"})

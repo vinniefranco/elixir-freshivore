@@ -34,7 +34,8 @@ defmodule Freshivore.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:exredis, ">= 0.2.1"},
+     {:poolboy, github: "devinus/poolboy", tag: "1.5.1"},
+     {:redix, "~> 0.2.1"},
      {:instagram, "0.0.3", [github: "arthurcolle/exstagram"]},
      {:oauth, github: "tim/erlang-oauth"},
      {:extwitter, "~> 0.5"}]

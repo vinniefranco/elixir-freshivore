@@ -3,22 +3,19 @@ defmodule Freshivore.Tweet do
   alias Timex.Date, as: TimeStamp
   alias Freshivore.Socialify
 
-  defstruct epoch: 0,
-            id: "",
-            text: "",
-            type: "tweet"
+  defstruct epoch: 0, id: "", text: "", type: "tweet"
 
   def build(raw_tweet) do
     %Freshivore.Tweet{
-      epoch: parse_time(raw_tweet),
-      id: raw_tweet.id_str,
-      text: text(raw_tweet.text)
+      epoch: raw_tweet |> parse_time,
+      id:    raw_tweet.id_str,
+      text:  raw_tweet.text |> text
     }
   end
 
   defp text(tweet) do
     social_opts = %{
-      hash: "https://twitter.com/hashtag/{@}",
+      hash:    "https://twitter.com/hashtag/{@}",
       mention: "https://twitter.com/{@}"
     }
 
