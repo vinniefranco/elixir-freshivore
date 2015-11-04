@@ -3,7 +3,7 @@ defmodule Freshivore.Socialify do
   def linkify(str, url_map) do
     str
     |> String.split(" ")
-    |> Enum.map(&(linkify_word(&1, url_map)))
+    |> Stream.map(&(linkify_word(&1, url_map)))
     |> Enum.join(" ")
   end
 
